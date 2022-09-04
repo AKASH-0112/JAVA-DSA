@@ -1,0 +1,17 @@
+tower of hanoi
+reverse linked list recursion
+
+
+hashing (hashmap hashset linkedhashset linkedhashmap)
+priorityque impelementation  ,   heap (minheap max heap) ,
+
+stable sort and unsatble sort
+SOLID principles of oops
+RiSE values
+
+substring take O(n)
+
+---------------------
+1] portfolio  (html css taiwind reactjs js)
+2] music mania(html css tailwind js  flask)
+3] Bank Management System ( Mysql , javaFx)

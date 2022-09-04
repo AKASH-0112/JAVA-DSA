@@ -1,0 +1,262 @@
+- never travel with head , bcz it will lead to garbage collection of previous nodes 
+- never leave alone a linkedlist which is cut out endged ,it will be vanished
+==>implementaton of linkelist scrach (addfirst ,addlast ,print,deletefirst,deletelast,size)
+
+==>reverse linkedlist
+        Node prenode = head; // gonna use at last  ,head =prenode
+        Node currnode = head.next; //  for while condtion
+        while (currnode !=null) {
+            Node nextnode =currnode.next;
+            currnode.next =prenode;
+            //updation 
+            prenode =currnode;
+            currnode =nextnode;
+        }
+        // to remove that double edge 
+        head.next =null;
+        // at while breaking condtion , cuurentnode will be  , and prevnode will be the last so point it head 
+        head = prenode;
+
+==>reverse linkedlist
+ public ListNode reverseList(ListNode head) {
+         
+        ListNode pre = null;  // gonna use in return 
+        ListNode curr = head; // while cond
+         
+        while(curr !=null){
+            ListNode nextnode =curr.next; // to avoid loss of ll
+            
+            curr.next = pre;
+                
+            pre =curr;
+            curr = nextnode;
+        }
+        head =pre;
+        
+        return pre;
+    }
+
+==>swap pair of adj node (without changing val)
+-dumy ko pair se ek kdm picke rkho
+ public ListNode swapPairs(ListNode head) {
+        
+          ListNode dumy  = new ListNode(-1); // new dump node
+          dumy.next = head;  // point toward  first node
+          ListNode  pre = dumy;
+          ListNode curr = head;
+        
+        while(curr != null && curr.next != null){
+            // this 3 steps must be in same ordere ,otherwise we will loss the linked list
+            pre.next = curr.next;
+            curr.next = curr.next.next;  // can aslo use pre.next.next
+            pre.next.next =curr;
+            
+            curr =curr.next;
+            pre = pre.next.next;
+            
+        }
+        return dumy.next;
+
+==>swap pair of adj node (changing val)
+
+ public ListNode swapPairs(ListNode head) {
+    
+        ListNode  curr = head;  
+        while(curr != null &&  curr.next != null){
+            int temp =curr.val;
+            
+            curr.val =curr.next.val;
+            curr.next.val =temp;
+            
+            
+            curr = curr.next.next;
+          
+        }
+        
+        return head;
+
+==> remove nth node form last of linkedlist
+//O(2n) ,O(1)
+// in  2pass
+// one for count , one for reaching at before point to make its next to nex.next
+// corner case , if n == k ,  then do , head =head.next; 
+ public ListNode removeNthFromEnd(ListNode head, int n) {
+        
+        int length = 0 ;
+        ListNode curr = head;
+        while(curr != null){
+            curr =curr.next;
+            length++;
+        }
+        
+        if(n== length){  // corner case if , n == k
+            head =head.next;
+            return head;
+        }
+        
+        curr =head;
+        int x = 1;
+        while(x < length-n){ //  see carefull , we will reach at just before ele of target
+            curr =curr.next;
+            x++;
+        }
+        
+        ListNode k =  curr.next;  // k is target node
+        
+        if(k!=null){
+            curr.next = k.next;
+        }
+        else{
+            curr.next=null;
+        }
+        
+        
+        
+        return head; // head remaains same , only chaged when k==n
+        
+        
+    }
+==> remove nth node from llinkedlist  by O(n), O(1)
+- in one pass , bcz fast will be counted as full travelsal , and slow will not complete its travelsal never
+- by using two pointer slow ,fast
+- at last we will be at such postion of node , slow will be just before the target , and fast will be always at end
+
+public ListNode removeNthFromEnd(ListNode head, int n) {
+        if(n==0){
+            return head;
+        }
+       	ListNode dumy = new ListNode(-1);
+        dumy.next = head;
+        ListNode Slow = dumy;
+        ListNode fast = dumy;
+        Int x = 0;
+
+        while( x < n){
+            fast =fast.next;
+            x++;
+                  }
+
+        while(fast.next != null){
+            fast =fast.next;
+            slow = slow.next;
+                  }
+    slow.next = slow.next.next;
+
+    return dumy.next; 
+
+        }
+
+==> nth node from last 
+    int getNthFromLast(Node head, int n)
+    {
+        
+        int count =0 ;
+        Node curr = head;
+        while(curr != null){
+            curr =curr.next;
+            count++;
+        }
+        if(n==count){
+            return head.data;
+        }
+        if(n >count){
+            return -1;
+        }
+        
+        curr =head;
+        int x =1 ;
+        while(x < count-n+1){
+            curr =curr.next;
+            x++;
+        }
+        
+        
+        return curr.data;
+    
+    
+    }
+
+==> middle of linked list
+- with finding length
+- O(n)
+ public ListNode middleNode(ListNode head) {
+        
+        ListNode curr  = head; // in ll this is var not node , it is used to travelsal
+        int x =0;
+        
+        while(curr != null){
+            
+            curr=curr.next;
+            x++;
+        }
+        
+        int mid = x/2;   // mid 2 , means to jump 2 time  , 1-2,2-3 node    // in even case it will return secondmiddle , 6/2 =3  3 jumps means to reaach at 4
+        
+        curr =head;
+        int st = 0 ;  // depedn on this toowich to return frist mddle or second middle
+        
+        while(st <mid){  // depedn on this toowich to return frist mddle or second middle
+            curr =curr.next;
+            st++;
+        }
+        
+        return curr;
+        
+    }
+
+==> middle of ll , without calculating length or by one pass only
+- racing me and my frnd , i can jumps 2 frnd can 1 only
+- when i reached last eleme or at null fr at middle only
+ public ListNode middleNode(ListNode head) {
+     
+        ListNode m = head;
+        ListNode f = head;
+        
+        // odd nodes then m will be at last node (m.next will null)
+        // even nodes then m will be at null( m = null)
+
+        // depend on which we want firstmiddle or second middle ineven case //  m.next =null means thi is lastnode ,  no need of m.next.next != null cindition
+        while(m != null  && m.next != null){
+    
+            m=m.next.next;
+            f=f.next;
+        }
+        
+        
+        return f; 
+    }
+
+
+==> reveresd lnkedlist 2   
+// we need to create temp1 , bcz all time curr will be ging forward means ,pre.next will not be curr always , only at first time
+
+ public static Node reverseBetween(Node head, int left, int right)
+    {
+        
+        Node temp = new Node(-1);
+        temp.next = head;
+        
+        Node pre =temp; // esko travel krna h so  naya ref bnaya, we cant trave node itself
+        
+        for(int i =0 ; i < left -1; i++){
+            pre =pre.next;
+        }
+        
+        Node curr =pre.next;
+        
+        for(int j = 0 ;  j< right-left ; j++){
+            
+            Node temp1 =pre.next;
+            pre.next =curr.next;
+            curr.next = curr.next.next;
+            pre.next.next = temp1;
+            
+        }
+    
+    
+    return temp.next;
+
+
+
+
+

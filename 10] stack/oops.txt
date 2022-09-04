@@ -1,0 +1,104 @@
+understand the memory stack and heap
+
+--------------------------------------------
+class Person {
+    int age;
+    String name;
+
+    public static void sayHi(){
+        sout(name + age);
+    }
+}
+
+-----------------------------------------------
+insatnce of class (obj)
+ref to intance
+
+Person ref =new Person();
+ref.age =10;
+ref.name ="Ak"
+Person ref1 =ref;
+total  1 intance and 2 ref
+
+Sysout(ref.age); 10
+Sysout(ref.name); Ak
+Sysout(ref1.age); 10
+Sysout(ref1.name); Ak
+------------------------------------------------
+
+Person ref1 =new Person();
+ref1.age =12;
+ref1.name ="akash;
+Person ref2 =new Person();
+ref2.age =78;
+ref2.name ="shubham;
+
+ref1.sayHi();
+ref2.sayHi();
+swap(ref1 ,ref2);
+ref1.sayHi();
+ref2.sayHi();  // will be same no change after swap
+
+// reason -  ref swap ho gye the , but  after swap ended from stack vanished swap ke changes also vanished
+
+swap( Person ref1 , Person ref2){
+    Person temp =ref1;
+    ref1 =ref2;
+    ref2 =temp;
+}
+----------------------------------------------------------
+
+Person ref1 =new Person();
+ref1.age =12;
+ref1.name ="akash;
+Person ref2 =new Person();
+ref2.age =78;
+ref2.name ="shubham;
+
+ref1.sayHi();
+ref2.sayHi();
+swap(ref1 ,ref2);  // ages will change
+ref1.sayHi();
+ref2.sayHi();
+
+swap( Person ref1 , Person ref2){
+    
+    int temp = ref1.age;
+    ref1.age = ref2.age;
+    ref2.age = temp ;
+    
+}
+
+
+-----------------------------------------------------------
+
+Person ref1 =new Person();
+ref1.age =12;
+ref1.name ="akash;
+Person ref2 =new Person();
+ref2.age =78;
+ref2.name ="shubham;
+
+ref1.sayHi(); // 10 , A
+ref2.sayHi(); // 20 ,B
+swap(ref1 ,ref2);  // ages will change
+ref1.sayHi();   // A,10
+ref2.sayHi();   // B ,0
+
+swap( Person ref1 , Person ref2){
+    
+ref1  = new Person(); // new intance created in heap ,with  0 null
+int age = ref1.age;  // age have 0
+ref1.age =ref2.age;  //  ref1.age = 20 
+ref2.age =age;      // ref2.age =0
+
+ref2  = new Person();  // vanished after swap ended 
+String  name = ref1.name;
+ref1.name =ref2.name;
+ref2.name = name;
+    
+}
+
+----------------------------------
+if we give  parametrized  constructor then old default will not there
+ if we want to have that too,then overaloding 

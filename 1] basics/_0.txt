@@ -1,0 +1,63 @@
+factorial
+prime non prime
+even odd
+fibonanci
+GCD 
+armstrong number 
+pallindrone of string 
+pallindrome od number
+reverse number
+reverse digit of numbers
+
+---------array
+max min from array(use of Integer.MAx_VALUE)
+isaccending
+search (linear +binary)
+bubble sort 
+selection sorted insertion sort
+cyclic sort
+reverse array( 2 pointer , single pointer , recursive)
+
+-----2d matrix array
+search   (O(n^2))
+search in sorted rowwsie colwise (in O(logn))
+transpose of matrix
+spiral order
+
+-------string 
+reverse string (by normal method  , by using string builder withou using function reverse)
+total lenght of strings in any array input by user(size and string are inputed )
+username from emial
+replace char of given string with new and pritn new string
+
+
+
+--------bit manuplution 
+multiply by 2 
+divide by 2
+rsb (rightmost set bit mask) of any number
+count set bits in intgeer(keranial algo)
+totat set bits in each number upto given int(start from 1)
+swap numbers
+power of 2
+even odd of number
+
+
+----------------recursion
+factorial
+fibonanci
+reverse srting 
+ispalindrome
+issorted array
+tower of hanoi
+push all x to end 
+remove duplicates
+keypad combination
+alll subsequence (string array)
+unique subsequences (string array)
+binary search
+first last occurance of alphabet
+sum of n natural number
+power by  O(n)
+power by O(logn)
+permutation of  string

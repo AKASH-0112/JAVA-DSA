@@ -1,0 +1,93 @@
+debugg the code each time , for memory understanding and how code running to know
+debuuger works
+// f5 to start with breakpoint
+// f10 for step over  (next line)
+// f11 for step into (for going to the function part from call)
+// shift+f11 step out is for skip the for loop and while loops
+
+//observe stack of main thread left side
+// and variable memory shows is of only selected stack left upper side 
+// we can select privious stack to see its memeory variables
+// and also we can see when the control comes to running stack from old stack
+
+// after main() function satck ends from stack , exit() stack created and in which all things are nullyfy in and then exit() stack also vanished and thats how java programmes ends(see in debugger and in stack)
+
+//
+      System.out.println("akasj");
+      String st ="akasj";
+      System.out.println(st);
+
+      this code , st created and store at memory , but we can avoid this type to save memory, so dont declared unecessary variables, if u r not going to use them more than 1 time
+
+---------------------------------------------
+java vs cpp diff ===>
+
+cpp , no default values like 
+for array it is 0 in java
+
+in cpp switch case do not allow string ,in java it is aallow
+
+in java pass by reference only , in cpp pass by  val and ref
+
+in cpp (0 and 1 are true and faalse ) ,but in java it do not take boolean values for condtion
+
+if we use  =  on place == ,it is compile error
+syntax error 
+in cpp it is not error ,but it bcms true ,and print if block only
+
+in java multiple inheritance not allowed for classes for interface are allowed , use of interface there in java
+
+java have only signed integer , cpp have both signed and unsigned
+
+java is only pass by value , in cpp pass by value +ref allowed
+
+in java garbage collection auto , in cpp we need to write descrutor function to garbage collection
+
+java by default public hoti h (specifier) , in cpp its private
+
+java method signature is  m(int ,float )  , in cpp returntype is also consider in it
+
+java has null , cpp NULL
+
+------------------------
+ADV PATTERN
+2s compliment -ve number ,why?(number system by gate smasher)
+memory working  in oops , thread 
+pass by values in java + memory working (debugging also help to see memeory)
+how string builder class make string mutable ??
+errors tyep , compile error ,runtime  when which and how to handle , exceptions? 
+heap vs stack (stack order mainten , heap random) (heap dynamic memeory)
+jvm architecture by durga software solutions + abdul
+string buffer
+--------------------------
+
+if we do not write public to main class then which error will come ?
+=- file will not be executable 
+=- jvm (javac compiler ) will not able to find file 
+
+------------------------------------
+>>> String ,String builder ... classes are final so no one make its child class  and make the obj created by it mutable in case of string
+>>> contructor function obj string also immutable
+>>>string pool makes string immutable(bcz this is only memory where many ref have same obj(obj is exact same i itslf so)), 
+>>> method arae is part of jvm memory  , heap and stack also part of jvm memory ,method area stores all function code as it is in it from all classes and thread (comman area for all thread function classes funtion )
+>> heap only have dynamic mmeory (new  keyword + string pool)
+>> diff thread have new stack created 
+>>> native method stack is for other langauge function which we are using in java(print,printf from c language)
+>> main thread for which stack is used to create
+>> built in function also created in main thread stack  , see by debugging and step into 
+>> stack memory is fixe size
+>> heap memory not fixed (dynamically allocated memory hoti h ye )
+>> other datatypes are mutable in java  , eg udate any int is to  modify old value
+>> heap - obj(instanace variables) + string pool + static variables  
+>> stack - function stack with local var and ref to objects
+>> after two consecutive nextInt()  ; use sc.nextlin()
+
+
+
+//
+import java.lang.*;    ------ string system classes are  imported to use
+runn or execution is from main method;s first line
+while running , java A ,  all the class file  methdos (including impotred clasess String ..etc)  are loaded into method area ,
+at that time only ,  System class's static var methods  are  created in heap  + A class static are created in heap also
+system is public+static  class and we us its method , println which is also public 
+//

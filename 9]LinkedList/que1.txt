@@ -1,0 +1,181 @@
+===> linkedlist is palindrom or not
+// reverser linkedlist then check ,  arraylist store krod then check   ---extra space 
+ public boolean isPalindrome(ListNode head) {
+        
+        ListNode  f  =head;
+     
+        
+        ArrayList<Integer> l =new ArrayList<>();
+        while(f != null){
+  
+            l.add(f.val);
+            f=f.next;
+        }
+        
+        for(int  i =0 ; i < l.size() ; i++){
+
+            if(! (l.get(i) == l.get(l.size()-1-i) )   )
+               {
+                
+                return false;
+            }
+        
+        }
+        return true;
+        
+        
+    }
+===> linkedlist is palindrom or not
+// without space
+
+ public ListNode firstmiddle(ListNode head){
+    ListNode fast = head;
+    ListNode slow = head;
+
+    while(fast.next != null  &&  fast.next.next !=null){
+
+        fast =fast.next.next;
+        slow =slow.next;
+    }
+
+    return slow;
+ }
+ public ListNode reverse(ListNode head){
+
+     ListNode pre  =null;
+     ListNode curr = head; 
+
+     while(curr != null){
+
+        ListNode nextnode = curr.next;
+
+        curr.next = pre ;
+
+       pre =curr;
+       curr = nextnode; 
+
+     }
+     return pre;
+ }
+
+ public boolean palindrome(ListNode head) {
+
+    if(head==null || head.next ==null){
+        return true;
+    }
+
+    ListNode middle = firstmiddle(head);  // reason for firstmiddle is we will be keeping less node in second reverder list,  as we will be comparing its ele uptot null 
+    ListNode reveresdhead = reverse(middle.next);
+
+    ListNode firsthead = head;
+    while(reveresdhead != null){    // at end null must be there 
+
+        if(reveresdhead.val !=  firsthead.val){
+            return false;
+        }
+
+        firsthead =firsthead.next;
+        reveresdhead = reveresdhead.next;
+
+    }
+
+    return true;
+
+ }
+
+==> detect the cycle in linkedlist , and how to remove cycle
+// loop always start from  end node (samjh rhe ho na)
+// floy's algo  or  hare turtle method
+// if cycle present then they(both pointer) definately meet at a point
+//otherwise never meet while will end and we will return false
+ public boolean hasCyle(ListNode head) {
+
+    if(head==null){
+        return false;
+    }
+    ListNode fast =head;
+    ListNode slow =head;
+    // if cycle there fast never reach to null
+    while(fast.next != null && fast.next.next !=null){ // both condtion are valid  
+        // first increase kr , as if we check first ,both pointing to head , will return true initially , so for avoiding
+        fast =fast.next.next;
+        slow =slow.next;
+        
+        if(fast == slow){
+            return true;
+        }
+    }
+    return false;
+
+    }
+// cyclic me , no null present as last will be pointing to between node
+
+==> find the node where cycle begins
+// after meeting 
+// head se aage jao 
+// and that meeting point se aage jate rkho// we will meet at begin node of cycle
+ public ListNode detectCycle(ListNode head) {
+        
+        ListNode slow=head;
+        ListNode fast = head;
+        
+        
+        while(fast.next !=null && fast.next.next != null){
+
+            slow =slow.next;
+            fast =fast.next.next;
+            
+            if(slow ==fast){
+
+                break;
+            }
+        
+        }
+        
+        slow =head;
+        while(!(slow==fast)){
+            slow=slow.next;
+            fast= fast.next;
+        }
+        
+        return slow;
+    }
+
+
+==> remove cycle from linkedlist
+// carry a pre pointer with slow ,at last brek its next
+ public static void removeLoop(Node head){
+    
+    Node temp  =new Node();
+    temp.next= head;
+    Node pre =temp;
+    Node fast =head ;
+    Node slow  =head;
+    
+    while(fast.next != null && fast.next.next != null){
+        pre =pre.next;
+        slow =slow.next;
+        fast =fast.next.next;
+        
+        if(slow == fast ){
+            
+            break;
+        }
+    }
+    
+    if(slow ==fast){
+        slow=head;
+          while( !(slow == fast)){
+        
+        pre =pre.next;
+        slow =slow.next;
+        fast =fast.next;
+                            }
+      pre.next =null;
+    }
+    
+    
+    }
+
+
+
